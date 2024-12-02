@@ -111,7 +111,6 @@ const ExpenseReimbursementForm: React.FC = () => {
   );
 };
 
-export default ExpenseReimbursementForm;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -130,3 +129,5 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+export default ExpenseReimbursementForm;

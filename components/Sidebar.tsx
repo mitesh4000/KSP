@@ -81,7 +81,10 @@ const Sidebar: React.FC<SidebarProps> = ({
           />
           <Text style={styles.menuItemText}>Dashboard</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigate("./TaskListing")}
+        >
           <MaterialIcons name="add-task" size={24} color={customColors.white} />
           <Text style={styles.menuItemText}>Tasks</Text>
         </TouchableOpacity>

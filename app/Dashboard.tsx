@@ -1,18 +1,28 @@
-import React from "react";
+import { NoticeBoard } from "@/components/Dashboard/NoticeBoard";
+import messaging from "@react-native-firebase/messaging";
+import React, { useEffect } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { NoticeBoard } from "../components/Dashboard/NoticeBoard";
 import { PerformanceMetrics } from "../components/Dashboard/PerformanceMetrics";
-import { QuickActions } from "../components/Dashboard/QuickActions";
 import { RecentActivities } from "../components/Dashboard/RecentActivities";
 import { TaskList } from "../components/Dashboard/TaskList";
 
 const Dashboard: React.FC = () => {
+  async function requestUserPermission() {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+    if (enabled) {
+      console.log("Authorization status:", authStatus);
+    }
+  }
+
+  useEffect(() => {
+    requestUserPermission();
+  }, []);
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.header}>ERP Dashboard</Text>
-
-      <QuickActions />
-
       <View style={styles.section}>
         <Text style={styles.sectionHeader}>Notice Board</Text>
         <NoticeBoard />
